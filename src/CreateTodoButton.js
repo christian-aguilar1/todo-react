@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import './CreateTodoButton.css';
 
 export const CreateTodoButton = () => {
   return (
-    <button>+</button>
+    <button className="CreateTodoButton">+</button>
   )
 }
