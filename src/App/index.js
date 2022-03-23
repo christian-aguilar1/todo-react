@@ -1,16 +1,10 @@
 import React from "react";
 import { AppUI } from "./AppUI";
-// import './App.css';
 
-const defaultTodos = [
-  { text: 'Cortar cebolla', completed: false },
-  { text: 'Tomar el curso de intro a React', completed: true },
-  { text: 'Llorar con la llorona', completed: false },
-  { text: 'Hacer la tarea de Calculo', completed: false },
-];
+import { useLocalStorage } from "../hooks/UseLocalStorage";
 
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos);
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
@@ -33,7 +27,7 @@ function App() {
 
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   const deleteTodo = (text) => {
@@ -41,7 +35,7 @@ function App() {
 
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   return (
