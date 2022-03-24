@@ -1,10 +1,13 @@
 import React from 'react';
 
-import { TodoContext } from '../TodoContext';
+import { TodoContext } from '../components/TodoContext';
 
 import { TodoCounter } from "../components/TodoCounter";
 import { TodoSearch } from "../components/TodoSearch";
 import { TodoList } from "../components/TodoList";
+import { TodosError } from '../components/TodosError';
+import { TodosLoading } from '../components/TodosLoading';
+import { EmptyTodos } from '../components/EmptyTodos';
 import { TodoItem } from "../components/TodoItem";
 import { CreateTodoButton } from "../components/CreateTodoButton";
 import { TodoForm } from "../components/TodoForm";
@@ -20,9 +23,9 @@ function AppUI() {
       <TodoSearch />
 
       <TodoList>
-        {dataStatus.error && <p>Desespérate, hubo un error...</p>}
-        {dataStatus.loading && <p>Estamos cargando, no desesperes...</p>}
-        {(!dataStatus.loading && !searchedTodos.length && !dataStatus.error) && <p>Crea tu primer TODO!</p>}
+        {dataStatus.error && <TodosError error={dataStatus.error} />}
+        {dataStatus.loading && new Array(4).fill(1).map((a, i) => <TodosLoading key={i} />)}
+        {(!dataStatus.loading && !searchedTodos.length && !dataStatus.error) && <EmptyTodos />}
 
         { searchedTodos.map(todo => (
           <TodoItem

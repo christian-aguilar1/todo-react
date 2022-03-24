@@ -24,7 +24,7 @@ function useLocalStorage(itemName, initialValue) {
       } catch (e) {
         setDataStatus({loading:false, error:true})
       }
-    }, 2000);
+    }, 6000);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

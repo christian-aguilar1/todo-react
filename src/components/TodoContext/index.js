@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const TodoContext = React.createContext();
 
@@ -17,12 +17,14 @@ function TodoProvider(props) {
 
   if (!searchValue.length >= 1) {
     searchedTodos = todos;
+    searchedTodos = searchedTodos.sort((a, b) => +a.completed-b.completed)
   } else {
     searchedTodos = todos.filter(todo => {
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
     })
+    searchedTodos = searchedTodos.sort((a, b) => +a.completed-b.completed)
   }
 
   const completeTodo = (text) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { DeleteIcon } from '../TodoIcon/DeleteIcon';
 import './TodoItem.css';
 
 export const TodoItem = (props) => {
@@ -15,12 +16,9 @@ export const TodoItem = (props) => {
         {props.text}
       </p>
 
-      <span
-        className="Icon Icon-delete"
-        onClick={props.onDelete}
-      >
-        X
-      </span>
+      <DeleteIcon
+        onDelete={props.onDelete}
+      />
     </li>
   )
 }

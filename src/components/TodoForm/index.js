@@ -1,7 +1,7 @@
 import React from 'react';
 import './TodoForm.css';
 
-import { TodoContext } from '../../TodoContext';
+import { TodoContext } from '../TodoContext';
 
 function TodoForm() {
   const [newTodoValue, setNewTodoValue] = React.useState('');
@@ -24,11 +24,23 @@ function TodoForm() {
       return;
     }
     addTodo(newTodoValue);
-    setOpenModal(prevState => !prevState);
+    onCancel();
+  };
+
+  const onKeyUp = (e) => {
+    if (e.charCode === 13) {
+      e.preventDefault();
+      if (newTodoValue.length <= 0) {
+        setError(true);
+        return;
+      }
+      addTodo(newTodoValue);
+      onCancel();
+    }
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} onKeyPress={onKeyUp}>
       <label>Escribe tu nuevo TODO</label>
       <textarea value={newTodoValue} onChange={onChange} placeholder="TODO a realizar" />
       {error && <p className="TodoForm__p-error" i>El nombre no puede estar vacío</p>}
