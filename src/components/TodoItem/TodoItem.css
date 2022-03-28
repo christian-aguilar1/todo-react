@@ -4,8 +4,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 30px;
   box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+  width: 60%;
+}
+
+@media (max-width: 786px) {
+  .TodoItem {
+    width: 100%;
+  }
 }
 
 .TodoItem-p {
@@ -26,8 +33,9 @@
   align-items: center;
   height: 48px;
   width: 48px;
-  font-size: 24px;
+  font-size: 35px;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .Icon-check {
@@ -35,8 +43,14 @@
   left: 12px;
   transform: rotate(180deg);
 }
+.Icon-check:hover {
+  color: #4caf50;
+}
 .Icon-check--active {
   color: #4caf50;
+}
+.Icon-check--active:hover {
+  color: #3d5c3e;
 }
 
 /* .Icon-delete {

@@ -1,11 +1,7 @@
 import React from 'react';
 import './TodoCounter.css';
 
-import { TodoContext } from '../TodoContext';
-
-function TodoCounter() {
-  const {totalTodos, completedTodos} = React.useContext(TodoContext);
-
+function TodoCounter({ totalTodos, completedTodos }) {
   React.useEffect(() => {
       totalTodos - completedTodos > 0
         ? (document.title = `TODO React | ${totalTodos - completedTodos} ${
