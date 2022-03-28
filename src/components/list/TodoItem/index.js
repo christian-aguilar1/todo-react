@@ -1,5 +1,5 @@
 import React from 'react';
-import { DeleteIcon } from '../TodoIcon/DeleteIcon';
+import { DeleteIcon } from '../../TodoIcon/DeleteIcon';
 import './TodoItem.css';
 
 export const TodoItem = (props) => {

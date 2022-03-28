@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TodosError({ error }) {
+function TodosError() {
   return <p>Desespérate, hubo un error...</p>
 }
 

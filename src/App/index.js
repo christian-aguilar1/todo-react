@@ -2,16 +2,21 @@ import React from "react";
 
 import { useTodos } from "../hooks/useTodos";
 
-import { TodoHeader } from '../components/TodoHeader';
-import { TodoCounter } from "../components/TodoCounter";
-import { TodoSearch } from "../components/TodoSearch";
-import { TodoList } from "../components/TodoList";
-import { TodosError } from '../components/TodosError';
-import { TodosLoading } from '../components/TodosLoading';
-import { EmptyTodos } from '../components/EmptyTodos';
-import { TodoItem } from "../components/TodoItem";
-import { Modal } from "../components/Modal";
-import { TodoForm } from "../components/TodoForm";
+import { TodoHeader } from '../components/header/TodoHeader';
+import { TodoCounter } from "../components/header/TodoCounter";
+import { TodoSearch } from "../components/header/TodoSearch";
+
+import { TodoList } from "../components/list/TodoList";
+import { TodoItem } from "../components/list/TodoItem";
+
+import { TodosError } from '../components/UXInfo/TodosError';
+import { TodosLoading } from '../components/UXInfo/TodosLoading';
+import { EmptyTodos } from '../components/UXInfo/EmptyTodos';
+import { EmptySearchResults } from "../components/UXInfo/EmptySearchResults";
+
+import { Modal } from "../components/form/Modal";
+import { TodoForm } from "../components/form/TodoForm";
+
 import { CreateTodoButton } from "../components/CreateTodoButton";
 
 
@@ -32,7 +37,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <TodoHeader>
+      <TodoHeader loading={dataStatus.loading}>
         <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos}
@@ -44,12 +49,28 @@ function App() {
         />
       </TodoHeader>
 
-      <TodoList>
-        {dataStatus.error && <TodosError error={dataStatus.error} />}
-        {dataStatus.loading && new Array(4).fill(1).map((a, i) => <TodosLoading key={i} />)}
-        {(!dataStatus.loading && !searchedTodos.length && !dataStatus.error) && <EmptyTodos />}
+      <TodoList
+        error={dataStatus.error}
+        loading={dataStatus.loading}
+        searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        searchText={searchValue}
 
-        {searchedTodos.map(todo => (
+        onError={() => <TodosError />}
+        onLoading={() => new Array(4).fill(1).map((a, i) => <TodosLoading key={i} />)}
+        onEmptyTodos={() => <EmptyTodos />}
+        onEmptySearchResults={(searchText) => <EmptySearchResults searchText={searchText}/>}
+        // render={ todo => (
+        //   <TodoItem
+        //     key={todo.text}
+        //     text={todo.text}
+        //     completed={todo.completed}
+        //     onComplete={() => completeTodo(todo.text)}
+        //     onDelete={() => deleteTodo(todo.text)}
+        //   />
+        // )}
+      >
+        {todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -57,7 +78,7 @@ function App() {
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
-        ))}
+        )}
       </TodoList>
 
       {!!openModal && (

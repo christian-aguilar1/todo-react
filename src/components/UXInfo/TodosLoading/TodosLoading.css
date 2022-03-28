@@ -6,7 +6,10 @@
   align-items: center;
   margin-top: 24px;
   box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+  width: 60%;
 }
+
+@media (max-width: 768px) {.LoadingTodo__container{width: 100%;}}
 
 .LoadingTodo__completeIcon {
   position: absolute;
@@ -23,8 +26,8 @@
 
 .LoadingTodo__deleteIcon {
   position: absolute;
-  top: -24px;
-  right: 0;
+  top: -20px;
+  right: 7px;
 }
 
 .LoadingTodo__completeIcon, .LoadingTodo__deleteIcon {
