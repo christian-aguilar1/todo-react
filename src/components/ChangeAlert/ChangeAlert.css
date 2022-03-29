@@ -1,0 +1,43 @@
+.ChangeAlert {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(32, 35, 41, 0.7);
+  z-index: 2;
+}
+
+.ChangeAlert__container {
+  padding: 34px;
+  text-align: center;
+  width: 380px;
+  height: 250px;
+  display: grid;
+  place-items: center;
+  background-color: #1e1e1f;
+  border-radius: 4px;
+}
+
+.ChangeAlert__container p {
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f7f7f7;
+}
+
+.ChangeAlert__container button {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  background: #a3b0e7;
+}
+.ChangeAlert__container button:hover {
+  background: #8793c4;
+}
+.ChangeAlert__container button:active {
+  background: #8793c4;
+  transform: translateY(4px)
+}

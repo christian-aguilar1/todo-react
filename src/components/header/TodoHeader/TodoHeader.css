@@ -3,5 +3,11 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 40px 0;
+  margin: 10px 0 30px;
+}
+
+@media (max-width: 420px) {
+  header {
+    margin: 10px 0 30px;
+  }
 }

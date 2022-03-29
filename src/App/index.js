@@ -18,6 +18,7 @@ import { Modal } from "../components/form/Modal";
 import { TodoForm } from "../components/form/TodoForm";
 
 import { CreateTodoButton } from "../components/CreateTodoButton";
+import { ChangeAlertWithStorageListener } from "../components/ChangeAlert";
 
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
     addTodo,
     deleteTodo,
     openModal,
-    setOpenModal
+    setOpenModal,
+    synchronizeTodos
   } = useTodos();
 
   return (
@@ -60,15 +62,6 @@ function App() {
         onLoading={() => new Array(4).fill(1).map((a, i) => <TodosLoading key={i} />)}
         onEmptyTodos={() => <EmptyTodos />}
         onEmptySearchResults={(searchText) => <EmptySearchResults searchText={searchText}/>}
-        // render={ todo => (
-        //   <TodoItem
-        //     key={todo.text}
-        //     text={todo.text}
-        //     completed={todo.completed}
-        //     onComplete={() => completeTodo(todo.text)}
-        //     onDelete={() => deleteTodo(todo.text)}
-        //   />
-        // )}
       >
         {todo => (
           <TodoItem
@@ -93,6 +86,9 @@ function App() {
       <CreateTodoButton
         setOpenModal={setOpenModal}
       />
+
+      <ChangeAlertWithStorageListener synchronize={synchronizeTodos} />
+
     </React.Fragment>
   );
 }

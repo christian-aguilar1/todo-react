@@ -1,23 +1,23 @@
 import React from 'react';
-import { DeleteIcon } from '../../TodoIcon/DeleteIcon';
+import { BsCheckLg } from "react-icons/bs";
+import { BsFillTrashFill } from "react-icons/bs";
 import './TodoItem.css';
 
 export const TodoItem = (props) => {
   return (
     <li className="TodoItem">
-      <span
+      <BsCheckLg
         className={`Icon Icon-check ${ props.completed && 'Icon-check--active' }`}
         onClick={props.onComplete}
-      >
-        ᄼ
-      </span>
+      />
 
       <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
         {props.text}
       </p>
 
-      <DeleteIcon
-        onDelete={props.onDelete}
+      <BsFillTrashFill
+        className={'Icon Icon-delete'}
+        onClick={props.onDelete}
       />
     </li>
   )
